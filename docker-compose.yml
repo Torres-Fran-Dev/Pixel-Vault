@@ -24,7 +24,7 @@ services:
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
-      - media_volume:/app/media
+      # ELIMINAMOS media_volume de aquí para que lea tu carpeta local 'media'
     env_file:
       - .env
     environment:
@@ -47,7 +47,7 @@ services:
 volumes:
   postgres_data:
   static_volume:
-  media_volume:
+  # Eliminamos media_volume de los volúmenes globales también
 
 networks:
   pixel_network:

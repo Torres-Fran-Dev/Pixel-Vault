@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Sesión - Pixel-Vault{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-12 px-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl space-y-6">
+        <div class="text-center">
+            <h1 class="text-2xl font-extrabold text-white">🔐 Iniciar Sesión</h1>
+            <p class="text-zinc-400 text-sm mt-1">Accede a tu cuenta en Pixel-Vault</p>
+        </div>
+
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="bg-red-500/10 border border-red-500/30 text-red-400 p-3 rounded-xl text-sm text-center">
+                    Usuario o contraseña incorrectos. Inténtalo de nuevo.
+                </div>
+            {% endif %}
+
+            <div>
+                <label class="block text-zinc-300 text-sm font-semibold mb-2">Usuario</label>
+                {{ form.username }}
+            </div>
+
+            <div>
+                <label class="block text-zinc-300 text-sm font-semibold mb-2">Contraseña</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="w-full bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200">
+                Entrar 🚀
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

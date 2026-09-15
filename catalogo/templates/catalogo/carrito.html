@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Tu Carrito - Pixel-Vault{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-8 px-4">
+    <h1 class="text-3xl font-extrabold text-white mb-6">🛒 Tu Carrito de Compras</h1>
+
+    {% if carrito %}
+        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl space-y-4">
+            {% for id, item in carrito.items %}
+                <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+                    <div class="flex items-center space-x-4">
+                        <img src="{% static item.imagen %}" alt="{{ item.nombre }}" class="w-16 h-16 object-cover rounded-lg">
+                        <div>
+                            <h3 class="text-white font-bold">{{ item.nombre }}</h3>
+                            <p class="text-zinc-400 text-sm">${{ item.precio }} x {{ item.cantidad }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-violet-400 font-bold">${% widthratio item.precio 1 item.cantidad %}</span>
+                        <a href="{% url 'eliminar_del_carrito' id %}" class="text-red-400 hover:text-red-300 text-sm font-semibold">Eliminar ❌</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="flex justify-between items-center pt-4">
+                <h2 class="text-xl font-bold text-white">Total: <span class="text-violet-400">${{ total|floatformat:2 }}</span></h2>
+                <a href="{% url 'finalizar_compra' %}" class="bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200">
+                    Finalizar Compra 🚀
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="text-center py-16 bg-zinc-900 border border-zinc-800 rounded-2xl">
+            <p class="text-zinc-400 text-lg mb-4">Tu carrito está vacío.</p>
+            <a href="{% url 'lista_juegos' %}" class="inline-block bg-violet-600 hover:bg-violet-500 text-white font-bold py-2 px-6 rounded-xl">
+                Ver Catálogo
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

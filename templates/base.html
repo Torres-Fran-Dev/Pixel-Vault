@@ -14,13 +14,31 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="{% url 'index' %}" class="text-xl font-black text-violet-400 tracking-wider flex items-center gap-2">
+                    <a href="{% url 'home' %}" class="text-xl font-black text-violet-400 tracking-wider flex items-center gap-2">
                         🎮 Pixel-Vault
                     </a>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="{% url 'index' %}" class="text-zinc-300 hover:text-violet-300 px-3 py-2 rounded-md text-sm font-medium transition">Inicio</a>
+                <div class="flex space-x-4 items-center">
+                    <a href="{% url 'home' %}" class="text-zinc-300 hover:text-violet-300 px-3 py-2 rounded-md text-sm font-medium transition">Inicio</a>
                     <a href="{% url 'contacto' %}" class="text-zinc-300 hover:text-violet-300 px-3 py-2 rounded-md text-sm font-medium transition">Contacto</a>
+                    <a href="{% url 'lista_juegos' %}" class="text-zinc-300 hover:text-violet-300 px-3 py-2 rounded-md text-sm font-medium transition">Catálogo</a>
+                    <a href="{% url 'ver_carrito' %}" class="bg-violet-600/30 hover:bg-violet-600/50 border border-violet-500/40 text-violet-300 px-3 py-2 rounded-lg text-sm font-medium transition flex items-center gap-1">
+                        🛒 Carrito
+                    </a>
+
+                    {% if user.is_authenticated %}
+                        <span class="text-zinc-400 text-sm hidden sm:inline">Hola, <strong class="text-white">{{ user.username }}</strong></span>
+                        <form action="{% url 'logout' %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-3 py-2 rounded-lg text-sm font-medium transition">
+                                Salir 🚪
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                            Login
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

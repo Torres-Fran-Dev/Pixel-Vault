@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}¡Compra Exitosa! - Pixel-Vault{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-16 px-4 text-center">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-xl space-y-6">
+        <div class="text-5xl">🎉</div>
+        <h1 class="text-2xl font-extrabold text-white">¡Compra Realizada con Éxito!</h1>
+        <p class="text-zinc-400 text-sm">
+            Gracias por adquirir tus juegos en Pixel-Vault. Las claves digitales han sido simuladas y enviadas a tu sesión.
+        </p>
+        <a href="{% url 'lista_juegos' %}" class="inline-block w-full bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200">
+            Volver al Catálogo 🎮
+        </a>
+    </div>
+</div>
+{% endblock %}
