@@ -51,3 +51,10 @@ def eliminar_del_carrito(request, juego_id):
         request.session['carrito'] = carrito
         
     return redirect('ver_carrito')
+
+
+def finalizar_compra(request):
+    # Vaciamos el carrito eliminando la variable de la sesión
+    if 'carrito' in request.session:
+        del request.session['carrito']
+    return render(request, 'catalogo/exito.html')
