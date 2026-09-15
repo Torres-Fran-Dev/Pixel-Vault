@@ -1,20 +1,54 @@
 {% extends 'base.html' %}
-
 {% load static %}
+
 {% block title %}Inicio - Pixel-Vault{% endblock %}
 
 {% block content %}
-<div class="text-center py-12">
-    <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight mb-4">
-        Bienvenido a <span class="text-violet-400 drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]">Pixel-Vault</span>
-    </h1>
-    <p class="text-lg text-zinc-400 max-w-2xl mx-auto mb-8">
-        Explora la bóveda secreta con los mejores videojuegos, preventas y clásicos imperdibles para tu consola o PC.
-    </p>
+<!-- Hero Section con más presencia -->
+<div class="relative overflow-hidden py-16 sm:py-24 text-center">
+    <!-- Efecto de brillo de fondo difuminado -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+        <div class="w-96 h-96 bg-violet-600 rounded-full blur-3xl"></div>
+    </div>
 
-    <!--<img src={% static 'img/logo.png' %} alt='logo' class="mx-auto mb-8 h-24 w-auto drop-shadow-lg">-->
-    <a href="{% url 'lista_juegos' %}" class="inline-block bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-violet-900/30 transition duration-200">
-        Ver Catálogo 🚀
-    </a>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <span class="inline-block py-1 px-3 rounded-full bg-violet-950 text-violet-400 text-xs font-semibold tracking-wider uppercase mb-4 border border-violet-800/50">
+            ⚡ Zona Gamer & Coleccionables
+        </span>
+        <h1 class="text-4xl sm:text-7xl font-extrabold text-white tracking-tight mb-6">
+            Bienvenido a <span class="text-violet-400 drop-shadow-[0_0_25px_rgba(139,92,246,0.6)]">Pixel-Vault</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Explora la bóveda secreta con los mejores videojuegos, preventas y clásicos imperdibles para tu consola o PC. Todo en un solo sistema.
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="{% url 'lista_juegos' %}" class="w-full sm:w-auto bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-violet-900/40 transition-all duration-200 transform hover:-translate-y-0.5">
+                Explorar Catálogo 🚀
+            </a>
+            <a href="#features" class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-semibold py-4 px-6 rounded-xl border border-zinc-800 transition-all duration-200">
+                Saber más ↓
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Seccion de características / onda extra -->
+<div id="features" class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-zinc-800/60 mt-12">
+    <div class="bg-zinc-900/50 border border-zinc-800/80 p-6 rounded-2xl backdrop-blur-sm">
+        <div class="text-violet-400 text-2xl mb-3">🛡️</div>
+        <h3 class="text-white font-bold text-lg mb-1">Stock Asegurado</h3>
+        <p class="text-zinc-400 text-sm">Títulos actualizados al instante mediante nuestro sistema de gestión interno.</p>
+    </div>
+    <div class="bg-zinc-900/50 border border-zinc-800/80 p-6 rounded-2xl backdrop-blur-sm">
+        <div class="text-violet-400 text-2xl mb-3">⚡</div>
+        <h3 class="text-white font-bold text-lg mb-1">Entrega Inmediata</h3>
+        <p class="text-zinc-400 text-sm">Procesamiento ágil de pedidos y atención directa con el cliente.</p>
+    </div>
+    <div class="bg-zinc-900/50 border border-zinc-800/80 p-6 rounded-2xl backdrop-blur-sm">
+        <div class="text-violet-400 text-2xl mb-3">🔥</div>
+        <h3 class="text-white font-bold text-lg mb-1">Preventas Exclusivas</h3>
+        <p class="text-zinc-400 text-sm">No te pierdas los lanzamientos más pesados de la temporada para tu plataforma.</p>
+    </div>
 </div>
 {% endblock %}
