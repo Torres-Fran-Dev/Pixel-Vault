@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %}{{ juego.nombre }} - Pixel-Vault{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto space-y-8 py-4">
+    <!-- Botón para volver atrás -->
+    <div>
+        <a href="{% url 'lista_juegos' %}" class="inline-flex items-center text-sm text-violet-400 hover:text-violet-300 transition">
+            ← Volver al catálogo
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-zinc-900 border border-violet-900/30 p-6 md:p-8 rounded-2xl shadow-xl">
+        <!-- Imagen del Juego -->
+        <div class="h-80 md:h-full w-full overflow-hidden rounded-xl bg-zinc-950 border border-violet-900/20">
+            <img src="{% static juego.imagen %}" alt="{{ juego.nombre }}" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Información del Juego -->
+        <div class="flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <span class="inline-block bg-violet-950 text-violet-300 text-xs font-semibold px-3 py-1 rounded-md border border-violet-800/50">
+                    {{ juego.plataforma }}
+                </span>
+                
+                <h1 class="text-3xl font-black text-zinc-100">{{ juego.nombre }}</h1>
+                
+                <div class="text-2xl font-black text-violet-400">
+                    ${{ juego.precio }}
+                </div>
+
+                <div class="border-t border-zinc-800 pt-4">
+                    <h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-2">Acerca del juego</h3>
+                    <p class="text-zinc-300 text-sm leading-relaxed">
+                        {% if juego.descripcion %}
+                            {{ juego.descripcion }}
+                        {% else %}
+                            Sumérgete en esta increíble aventura dentro de Pixel-Vault. Disfruta de gráficos alucinantes, horas de jugabilidad y una historia que te atrapará desde el primer minuto. ¡Añádiolo a tu carrito y comienza a jugar ahora mismo!
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botón de compra / Carrito (preparado para el próximo paso) -->
+            <div class="pt-4 border-t border-zinc-800">
+                <a href="{% url 'agregar_carrito' juego.id %}" class="inline-block bg-violet-600 hover:bg-violet-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-violet-900/30 transition duration-200">
+                    Añadir al Carrito 🛒
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
