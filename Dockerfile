@@ -25,3 +25,6 @@ RUN mkdir -p /app/staticfiles /app/media
 
 # Expose port
 EXPOSE 8000
+
+# Start Gunicorn server
+CMD ["gunicorn", "pixel_vault.wsgi:application", "--bind", "0.0.0.0:8000"]
