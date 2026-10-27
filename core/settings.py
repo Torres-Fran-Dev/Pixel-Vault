@@ -28,8 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.getenv('DEBUG', 'True') == 'True'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 #ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
