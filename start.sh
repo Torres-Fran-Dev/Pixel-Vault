@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Salir inmediatamente si hay un error
 set -o errexit
 
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
-# Arrancar Gunicorn usando la carpeta core que descubrimos antes
+# Crea un superusuario automáticamente si no existe
+python manage.py shell -c "from django.contrib.auth.models import User; User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', 'tucontraseña123')"
+
+# Arrancar Gunicorn
 gunicorn core.wsgi:application --bind 0.0.0.0:8000
