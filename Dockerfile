@@ -26,5 +26,11 @@ RUN mkdir -p /app/staticfiles /app/media
 # Expose port
 EXPOSE 8000
 
-# Start Gunicorn server
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+# ... todo lo que ya tenías antes en tu Dockerfile ...
+
+# Copiar el script de inicio y darle permisos si hace falta
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+# Comando final que arranca todo
+CMD ["/app/start.sh"]
