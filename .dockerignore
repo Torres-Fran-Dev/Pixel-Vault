@@ -1,0 +1,14 @@
+# Archivos de Docker y configuración local que Render no necesita leer
+docker-compose.yml
+.env
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git
+.gitignore
+README.md
+staticfiles/
+media/
