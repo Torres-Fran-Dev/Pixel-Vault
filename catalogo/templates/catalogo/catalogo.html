@@ -27,7 +27,11 @@
         <div class="bg-zinc-900 border border-violet-900/30 rounded-xl overflow-hidden shadow-lg hover:border-violet-600 transition flex flex-col justify-between">
             
             <div class="h-48 w-full overflow-hidden bg-zinc-950">
-                <img src="{% static juego.imagen %}" alt="{{ juego.nombre }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                {% if "/" in juego.imagen %}
+                    <img src="{% static juego.imagen %}" alt="{{ juego.nombre }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                {% else %}
+                    <img src="{% static 'img/portadas/' %}{{ juego.imagen }}.webp" alt="{{ juego.nombre }}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                {% endif %}
             </div>
 
             <div class="p-6 space-y-4">
