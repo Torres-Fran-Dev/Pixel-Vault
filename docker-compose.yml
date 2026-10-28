@@ -1,10 +1,31 @@
-web:
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: pixel_vault_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - pixel_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
     build: .
     container_name: pixel_vault_web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
+      - media_volume:/app/media  # <-- ¡Agregado para que las imágenes no se pierdan!
     env_file:
       - .env
     environment:
@@ -15,7 +36,6 @@ web:
       - DB_PORT=${DB_PORT}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
-      # >>> AGREGA ESTA LÍNEA AQUÍ <<<
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
     ports:
       - "8300:8000"
@@ -25,3 +45,12 @@ web:
     networks:
       - pixel_network
     restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:  # <-- Declarado aquí abajo
+
+networks:
+  pixel_network:
+    driver: bridge

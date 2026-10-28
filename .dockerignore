@@ -1,5 +1,5 @@
 # Archivos de Docker y configuración local que Render no necesita leer
-docker-compose.yml
+#docker-compose.yml
 .env
 venv/
 env/

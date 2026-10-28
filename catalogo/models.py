@@ -7,7 +7,7 @@ class Juego(models.Model):
     nombre = models.CharField( max_length=150)
     plataforma = models.CharField(max_length=50)
     precio = models.DecimalField(max_digits=5, decimal_places=2)
-    imagen = models.ImageField(upload_to='juegos/', blank=True, null=True)
+    imagen = models.CharField(max_length=255, blank=True, null=True, default='img/logo.png')
     descripcion = models.TextField(blank=True, null=True)
     
     def __str__(self) -> str:
