@@ -27,10 +27,12 @@ def agregar_carrito(request, juego_id):
         carrito[id_str]['cantidad'] += 1
     else:
         juego = get_object_or_404(Juego, id=juego_id)
+        # Nos aseguramos de que si juego.imagen es None, no guarde None en la sesión
+        imagen_valida = juego.imagen if juego.imagen else "1"
         carrito[id_str] = {
             'nombre': juego.nombre,
             'precio': float(juego.precio),
-            'imagen': juego.imagen,
+            'imagen': imagen_valida,
             'cantidad': 1
         }
         
@@ -51,7 +53,6 @@ def eliminar_del_carrito(request, juego_id):
         request.session['carrito'] = carrito
         
     return redirect('ver_carrito')
-
 
 def finalizar_compra(request):
     # Vaciamos el carrito eliminando la variable de la sesión
