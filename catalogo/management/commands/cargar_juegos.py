@@ -22,7 +22,7 @@ class Command(BaseCommand):
             {"nombre": "Resident Evil 4 Remake", "plataforma": "PC / PS5 / Xbox", "precio": 59.99, "descripcion": "La supervivencia es solo el comienzo en esta reinvención total del clásico de terror y acción.", "imagen": "11"},
             {"nombre": "Spider-Man 2", "plataforma": "PS5", "precio": 69.99, "descripcion": "Los Spider-Men, Peter Parker y Miles Morales, regresan para una nueva aventura en el universo Marvel.", "imagen": "9"},
             {"nombre": "Street Fighter 6", "plataforma": "PC / PS5 / Xbox", "precio": 59.99, "descripcion": "La nueva evolución de la saga de lucha de Capcom combina modos innovadores y gráficos de última.", "imagen": "12"},
-            {"nombre": "The Legend of Zelda: Tears of the Kingdom", "plataforma": "Nintendo Switch", "precio": 69.99, "descripcion": "Una aventura épica a través de los cielos y las tierras de Hyrule en la secuela del éxito de Nintendo.", "imagen": "17"},
+            {"nombre": "The Legend of Zelda: Tears of the Kingdom", "plataforma": "Nintendo Switch", "precio": 69.99, "descripcion": "Una aventura épica a través de los cielos y las tierras de Hyrule en la secuela del éxito de Nintendo.", "imagen": "1"},
             {"nombre": "Super Mario Bros. Wonder", "plataforma": "Nintendo Switch", "precio": 59.99, "descripcion": "La clásica jugabilidad de Mario da un vuelco con la llegada de las divertidísimas Flores Maravilla.", "imagen": "6"}
         ]
 
