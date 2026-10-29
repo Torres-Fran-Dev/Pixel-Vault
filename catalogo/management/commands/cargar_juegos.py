@@ -27,6 +27,14 @@ class Command(BaseCommand):
         ]
 
         for item in juegos_data:
+            # Si existen duplicados previos por nombre, limpiamos el exceso primero
+            repetidos = Juego.objects.filter(nombre=item["nombre"])
+            if repetidos.count() > 1:
+                # Nos quedamos con el primero y borramos los duplicados sobrantes
+                primer_juego = repetidos.first()
+                repetidos.exclude(pk=primer_juego.pk).delete()
+
+            # Usamos update_or_create buscando por nombre de forma segura
             Juego.objects.update_or_create(
                 nombre=item["nombre"],
                 defaults={
@@ -37,4 +45,4 @@ class Command(BaseCommand):
                 }
             )
 
-        self.stdout.write(self.style.SUCCESS('¡Los 18 juegos oficiales se cargaron con éxito!'))
+        self.stdout.write(self.style.SUCCESS('¡Los 18 juegos oficiales se cargaron con éxito sin duplicados!'))
